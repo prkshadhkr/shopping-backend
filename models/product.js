@@ -71,7 +71,6 @@ class Product {
     return product;
   }
 
-
   /** create a new product */
   static async create(data){
     const checkDuplicate = await db.query(
@@ -189,13 +188,29 @@ class Product {
     return result.rows[0];
   }
 
+  /** get reviews from product id */
+    static async findAllReviewsByProductId( id ){
+      const result = await db.query(
+        `SELECT 
+          id,
+          product_id,
+          title, 
+          rating, 
+          comment
+        FROM reviews
+        WHERE product_id = $1`,
+        [id]
+      );
+      return result.rows;
+    }
+
   /** delete review from database, returns undefined */
   static async removeReview(id, rId){
     const result = await db.query(
       `DELETE FROM reviews
       WHERE id = $1 
       RETURNING title`,
-      [id]
+      [rId]
     );
 
     if(result.rows.length === 0){
