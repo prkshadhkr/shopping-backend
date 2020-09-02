@@ -28,7 +28,7 @@ router.get("/:id",  async function(req, res, next){
 })
 
 /** POST/{ productData } => { token: token } */
-router.post("/", adminRequired, async function(req, res, next){
+router.post("/new", async function(req, res, next){
   try {
       let checkSchema = validate(req.body, productNewSchema);
 
@@ -44,7 +44,7 @@ router.post("/", adminRequired, async function(req, res, next){
 })
 
 /** PATCH /{productData} => {product: updateProduct} */
-router.patch("/:id", adminRequired, async function(req, res, next){
+router.patch("/:id", async function(req, res, next){
   try {
     if("id" in req.body){
       throw new ExpressError(
@@ -66,7 +66,7 @@ router.patch("/:id", adminRequired, async function(req, res, next){
 });
 
 /** DELETE /[name] => { products: "product deleted" } */
-router.delete("/:id", adminRequired, async function(req, res, next){
+router.delete("/:id", async function(req, res, next){
   try {
     await Product.remove(req.params.id);
     return res.json({ message: "Product deleted" });

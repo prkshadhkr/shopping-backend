@@ -13,80 +13,84 @@
         "title": "The product_name schema",
         "description": "An explanation about the purpose of this instance.",
         "default": "",
+        "minLength": 1,
+        "maxLength": 55,
         "examples": [
             "T-shirt-1"
         ]
     },
-      "image": {
-          "$id": "#/properties/image",
-          "type": "string",
-          "title": "The image schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              "www.shopping.com/image"
-          ]
-      },
-      "brand": {
-          "$id": "#/properties/brand",
-          "type": "string",
-          "title": "The brand schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              "Polo"
-          ]
-      },
-      "price": {
-          "$id": "#/properties/price",
-          "type": "number",
-          "title": "The price schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0.0,
-          "examples": [
-              29.99
-          ]
-      },
-      "category": {
-          "$id": "#/properties/category",
-          "type": "string",
-          "title": "The category schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              "casual"
-          ]
-      },
-      "count_in_stock": {
-          "$id": "#/properties/count_in_stock",
-          "type": "integer",
-          "title": "The count_in_stock schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-              3
-          ]
-      },
-      "description": {
-          "$id": "#/properties/description",
-          "type": "string",
-          "title": "The description schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              "casual wear black polo t-shirt"
-          ]
-      },
-      "_token": {
-          "$id": "#/properties/_token",
-          "type": "string",
-          "title": "The _token schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              "abcd1234"
-          ]
-      }
-  },
-  "additionalProperties": true
+    "image": {
+        "$id": "#/properties/image",
+        "type": "string",
+        "title": "The image schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "minLength": 1,
+        "maxLength": 200,
+        "examples": [
+            "www.shopping.com/image"
+        ]
+    },
+    "brand": {
+        "$id": "#/properties/brand",
+        "type": "string",
+        "title": "The brand schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "minLength": 1,
+        "maxLength": 55,
+        "examples": [
+            "Polo"
+        ]
+    },
+    "price": {
+        "$id": "#/properties/price",
+        "type": "number",
+        "title": "The price schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": 0.0,
+        "minLength": 1,
+        "maxLength": 10,
+        "examples": [
+            29.99
+        ]
+    },
+    "category": {
+        "$id": "#/properties/category",
+        "type": "string",
+        "title": "The category schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "minLength": 1,
+        "maxLength": 55,
+        "examples": [
+            "casual"
+        ]
+    },
+    "count_in_stock": {
+        "$id": "#/properties/count_in_stock",
+        "type": "number",
+        "title": "The count_in_stock schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": 0,
+        "minLength": 1,
+        "maxLength": 55,
+        "examples": [
+            3
+        ]
+    },
+    "description": {
+        "$id": "#/properties/description",
+        "type": "string",
+        "title": "The description schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "minLength": 1,
+        "maxLength": 1000,
+        "examples": [
+            "casual wear black polo t-shirt"
+        ]
+  }
+},
+"additionalProperties": false
 }
