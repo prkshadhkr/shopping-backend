@@ -10,7 +10,7 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 class User {
 
   /** authenticate user with username, password. Return user or throw error */
-  static async authenticate(data) {
+  static async authenticate(username, password) {
     //find the user first
     const result = await db.query(
       `SELECT username,
@@ -22,7 +22,7 @@ class User {
         is_admin
       FROM users
       WHERE username = $1`,
-      [data.username]
+      [username]
     );
 
     const user = result.rows[0];
@@ -30,7 +30,7 @@ class User {
       throw new Error(`No user found`);
     }
     //comare hashed password from user to hashed password from db
-    const isValid = await bcrypt.compare(data.password, user.password);
+    const isValid = await bcrypt.compare(password, user.password);
     if(!isValid) {
       throw new ExpressError("Invalid password", 401);
     } 
