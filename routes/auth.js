@@ -6,7 +6,8 @@ const createToken = require("../helpers/createToken");
 
 router.post("/login", async function(req, res, next){
   try {
-    const user = await User.authenticate(req.body);
+    const { username, password } = req.body;
+    const user = await User.authenticate(username, password);
     const token = createToken(user);
     return res.json({ token });
   } catch (err) {
