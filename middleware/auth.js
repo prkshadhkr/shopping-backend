@@ -25,7 +25,7 @@ const Order = require("../models/order");
   */
  function adminRequired (req, res, next){
    try {
-     const tokenStr = req.body._token;
+     const tokenStr = req.body._token || req.headers._token;
      let token = jwt.verify(tokenStr, SECRET_KEY);
      res.locals.username = token.username;
 
@@ -34,6 +34,7 @@ const Order = require("../models/order");
      }
      throw new Error();
    } catch (err){
+    console.log("<<<< ERROR >>>", err.message);
     return next(new ExpressError(`You must have an admin to access`, 401));
    }
  }
