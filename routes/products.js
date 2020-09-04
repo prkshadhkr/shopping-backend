@@ -18,7 +18,7 @@ router.get("/", async function(req, res, next){
 })
 
 /** GET/[name] => {product: product} */
-router.get("/:id",  async function(req, res, next){
+router.get("/:id", async function(req, res, next){
   try {
     const product = await Product.findOne(req.params.id);
     return res.json({ product });
@@ -28,7 +28,7 @@ router.get("/:id",  async function(req, res, next){
 })
 
 /** POST/{ productData } => { token: token } */
-router.post("/new", async function(req, res, next){
+router.post("/new", adminRequired, async function(req, res, next){
   try {
       let checkSchema = validate(req.body, productNewSchema);
 
@@ -44,7 +44,7 @@ router.post("/new", async function(req, res, next){
 })
 
 /** PATCH /{productData} => {product: updateProduct} */
-router.patch("/:id", async function(req, res, next){
+router.patch("/:id", adminRequired, async function(req, res, next){
   try {
     if("id" in req.body){
       throw new ExpressError(
@@ -66,7 +66,7 @@ router.patch("/:id", async function(req, res, next){
 });
 
 /** DELETE /[name] => { products: "product deleted" } */
-router.delete("/:id", async function(req, res, next){
+router.delete("/:id", adminRequired, async function(req, res, next){
   try {
     await Product.remove(req.params.id);
     return res.json({ message: "Product deleted" });
@@ -76,7 +76,7 @@ router.delete("/:id", async function(req, res, next){
 })
 
 /** POST /{reviews}  => {product : reviews }*/
-router.post("/:id/reviews", async function(req, res, next){
+router.post("/:id/reviews", authRequired, async function(req, res, next){
   try {
     const review = await Product.addReview(
       req.params.id,
@@ -90,7 +90,7 @@ router.post("/:id/reviews", async function(req, res, next){
 })
 
 /** GET /{ reviews } => {reviews: reviews } */
-router.get("/:id/reviews", async function(req, res, next) {
+router.get("/:id/reviews", authRequired, async function(req, res, next) {
   try {
     const reviews = await Product.findAllReviewsByProductId( req.params.id );
     return res.json({ reviews });
@@ -100,7 +100,7 @@ router.get("/:id/reviews", async function(req, res, next) {
 })
 
 /** DELETE / [id] => {reviews: "review deleted"} */
-router.delete("/:id/reviews/:rId", async function(req, res, next){
+router.delete("/:id/reviews/:rId", adminRequired, async function(req, res, next){
   try {
     await Product.removeReview(req.params.id, req.params.rId);
     return res.json({ message: "Review deleted"});
