@@ -62,11 +62,12 @@ const Order = require("../models/order");
 
  async function ensureCorrectUserOrder (req, res, next){
   try {
+    console.log('**** req.body *** ', req.body);
     const tokenStr = req.body._token || req.query._token;
     let token = jwt.verify(tokenStr, SECRET_KEY);
     res.locals.username = token.username;
 
-    let order = await Order.findOne(req.params.id);
+    let order = await Order.findOne(req.params.id || req.body.order_id);
     if(token.username === order.user.username){
       return next();
     }
