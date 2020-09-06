@@ -104,7 +104,7 @@ INSERT INTO products (
   'Apple',
   649.00,
   'Accessories',
-  5,
+  50,
   'Gold Stainless Steel Case with Sport Band\n'
 ),
 (
@@ -114,7 +114,7 @@ INSERT INTO products (
   'Hydroflask',
   49.95,
   'Sports',
-  11,
+  50,
   'Insulated water bottle'
 ),
 (
@@ -124,7 +124,7 @@ INSERT INTO products (
   'Apple',
   1000.00,
   'Electronics',
-  5,
+  50,
   'One of the best phone in market'
 ),
 (
@@ -135,7 +135,7 @@ INSERT INTO products (
   'Unique bargains',
   42.49,
   'Dress',
-  7,
+  700,
   'Summer wear'
 ),
 (
@@ -145,7 +145,7 @@ INSERT INTO products (
   'Naturalizer',
   39.99,
   'Sandals',
-  5,
+  50,
   'Taimi dress sandals'
 ),
 (
@@ -155,7 +155,7 @@ INSERT INTO products (
   'Nike',
   150.00,
   'Sports',
-  11,
+  100,
   'Great Pair of shoes'
 ), 
 (
@@ -165,7 +165,7 @@ INSERT INTO products (
   'Nike',
   160.00,
   'Sports',
-  9,
+  100,
   'Authentic premier league soccer ball'
 ),
 (
@@ -175,7 +175,7 @@ INSERT INTO products (
   'DKNY',
   168.00,
   'Accessories',
-  7,
+  100,
   'DKNY Lola crossbody'
 ),
 (
@@ -185,7 +185,7 @@ INSERT INTO products (
   'Nike',
   20.00,
   'Sports',
-  11,
+  100,
   'Cap for outdoor running'
 ),
 (
@@ -196,7 +196,7 @@ INSERT INTO products (
   'Bose',
   279.00,
   'Electronics',
-  12,
+  50,
   'Bose QuietComfort 35 II Wireless Bluetooth Headphone Noise-Cancelling,' 
   ' with Alexa voice control - silver'
 ),
@@ -208,7 +208,7 @@ INSERT INTO products (
   'Nike',
   19.97,
   'Sports',
-  15,
+  150,
   'Hoodies for fall'
 ),
 (
@@ -217,6 +217,6 @@ INSERT INTO products (
   'Samsung',
   689.99,
   'Electronics',
-  16,
+  160,
   'Samsung Crystal UHD TU-8000 Series'
 );
