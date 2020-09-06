@@ -1,7 +1,5 @@
 const db = require("../db");
-const partialUpdate = require("../helpers/partialUpdate");
 const ExpressError = require("../helpers/expressError");
-const { userNewSchema } = require("../schemas");
 const { SALES_TAX, SHIPPING_RATE } = require("../config");
 
 class Order {
@@ -124,7 +122,8 @@ class Order {
       const product = productRes.rows[0];
       //check if order qty is more that what we have in stock
       if(data.products[i].qty > product.count_in_stock){
-        throw new ExpressError(`Product of id '${product.id}' available in stock ${product.count_in_stock}`)
+        throw new ExpressError(
+          `Product of id '${product.id}' available in stock ${product.count_in_stock}`)
       }
       const price = data.products[i].qty * product.price;
       priceSum += price;
