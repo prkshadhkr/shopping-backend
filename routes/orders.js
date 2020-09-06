@@ -2,9 +2,12 @@ const express = require("express");
 const ExpressError = require("../helpers/expressError");
 const Order = require("../models/order");
 const { validate } = require("jsonschema");
-const{ orderNewSchema, orderUpdateSchema } = require("../schemas");
-const { adminRequired, authRequired, ensureCorrectUserOrder } = require("../middleware/auth");
-const auth = require("../middleware/auth");
+const{ orderNewSchema } = require("../schemas");
+const { 
+  adminRequired,
+  authRequired, 
+  ensureCorrectUserOrder 
+} = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -26,7 +29,7 @@ router.get("/:id", authRequired, ensureCorrectUserOrder, async function(req, res
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** POST/{ orderData } => { token: token } */
 router.post("/", authRequired, async function(req, res, next){
@@ -44,7 +47,7 @@ router.post("/", authRequired, async function(req, res, next){
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** DELETE /[id] => { orders: "order deleted" } */
 router.delete("/:id", adminRequired, async function(req, res, next){
@@ -57,10 +60,10 @@ router.delete("/:id", adminRequired, async function(req, res, next){
 })
 
 /** POST /{shipping}  => {shipping : shipping }*/
-router.post("/:id/shipping", authRequired, ensureCorrectUserOrder, async function(req, res, next){
+router.post("/shipping", ensureCorrectUserOrder, async function(req, res, next){
   try {
     const shipping = await Order.addShipping(
-      req.params.id,
+      req.body.order_id,
       req.body
     );
 
@@ -71,7 +74,7 @@ router.post("/:id/shipping", authRequired, ensureCorrectUserOrder, async functio
 })
 
 /** POST /{payment}  => {payment : payment }*/
-router.post("/:id/payment", authRequired, ensureCorrectUserOrder, async function(req, res, next){
+router.post("/payment", ensureCorrectUserOrder, async function(req, res, next){
   try {
     const payment = await Order.addPayment(
       req.params.id,
