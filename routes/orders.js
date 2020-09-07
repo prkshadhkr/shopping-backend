@@ -9,6 +9,10 @@ const {
   ensureCorrectUserOrder 
 } = require("../middleware/auth");
 
+//for stripe payment
+const { STRIPE_SECRET_KEY } = require("../secret");
+const stripe = require("stripe")(STRIPE_SECRET_KEY);
+
 const router = express.Router();
 
 /** GET/ => { orders: [order, ...]} */
@@ -76,12 +80,17 @@ router.post("/shipping", ensureCorrectUserOrder, async function(req, res, next){
 /** POST /{payment}  => {payment : payment }*/
 router.post("/payment", ensureCorrectUserOrder, async function(req, res, next){
   try {
-    const payment = await Order.addPayment(
-      req.params.id,
-      req.body
-    );
+    const orderId = req.body.order_id;
+    const { total_price } = await Order.totalAmount( orderId );
+    const totalPrice = 100 * Number.parseFloat(total_price);
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: totalPrice,
+      currency: "usd"
+    });
+    const pIntent = paymentIntent.client_secret;
+    const payment = await Order.addPayment( orderId, pIntent); 
 
-  return res.json({ payment });
+    res.send ({ clientSecret: pIntent });
   } catch(err) {
     return next(err);
   }
