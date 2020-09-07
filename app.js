@@ -14,6 +14,9 @@ const morgan = require('morgan');
 
 const app = express();
 
+// added for stripe application
+app.use(express.static("."));
+
 // for json data:
 app.use(express.json());
 
