@@ -196,13 +196,13 @@ class Order {
   }
 
   /** add payments */
-  static async addPayment(order_id, data){
+  static async addPayment(order_id, pay_ref){
     //insert payment info in payment tables
     const result = await db.query(
       `INSERT INTO payments (order_id, pay_ref)
       VALUES ($1, $2)
       RETURNING id, order_id, pay_ref`, 
-      [ order_id, data.pay_ref ]
+      [ order_id, pay_ref ]
     );
     const payment = result.rows[0];
     if(!payment){
@@ -217,6 +217,17 @@ class Order {
       [true, order_id]
     );
     return payment;
+  }
+
+  /** find total amount */
+  static async totalAmount(order_id){
+    const totalRes = await db.query(
+      `SELECT total_price 
+      FROM orders
+      WHERE id = $1`,
+      [order_id]
+    );
+    return totalRes.rows[0];
   }
 }
 
