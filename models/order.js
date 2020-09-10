@@ -1,6 +1,7 @@
 const db = require("../db");
 const ExpressError = require("../helpers/expressError");
 const { SALES_TAX, SHIPPING_RATE } = require("../config");
+const User = require("./user");
 
 class Order {
   /** find all orders (can filter on terms) */
@@ -70,6 +71,36 @@ class Order {
     );
     order.payment = paymentRes.rows[0];
     
+    return order;
+  }
+
+   /** find orders from specific user */
+   static async findOrderByUser(username){
+    const user = await User.findOne(username);
+    const result = await db.query(
+      `SELECT
+        o.id, 
+        o.user_id, 
+        o.price, 
+        o.tax_price,
+        o.shipping_price, 
+        o.total_price, 
+        o.is_paid,
+        o.is_delivered,
+        s.address,
+        s.city
+      FROM orders AS o
+      LEFT JOIN shippings AS s
+      ON o.id = s.order_id
+      WHERE user_id = $1
+      AND o.is_paid = true`,
+      [user.id]
+    );
+
+    const order = result.rows;
+    if(!order){
+      throw new ExpressError(`There exists no order for user id '${id}'`, 404)
+    }
     return order;
   }
 

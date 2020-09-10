@@ -34,7 +34,7 @@ const Order = require("../models/order");
      }
      throw new Error();
    } catch (err){
-    console.log("<<<< ERROR >>>", err.message);
+    // console.log("<<<< ERROR >>>", err.message);
     return next(new ExpressError(`You must have an admin to access`, 401));
    }
  }
@@ -46,7 +46,8 @@ const Order = require("../models/order");
   */
  function ensureCorrectUser (req, res, next){
    try {
-     const tokenStr = req.body._token || req.query._token;
+     
+     const tokenStr = req.body._token || req.query._token || req.headers._token;
      let token = jwt.verify(tokenStr, SECRET_KEY);
      res.locals.username = token.username;
 
@@ -62,7 +63,7 @@ const Order = require("../models/order");
 
  async function ensureCorrectUserOrder (req, res, next){
   try {
-    console.log('**** req.body *** ', req.body);
+    // console.log('**** req.body *** ', req.body);
     const tokenStr = req.body._token || req.query._token;
     let token = jwt.verify(tokenStr, SECRET_KEY);
     res.locals.username = token.username;
