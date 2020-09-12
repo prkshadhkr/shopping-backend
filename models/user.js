@@ -4,11 +4,8 @@ const partialUpdate = require("../helpers/partialUpdate");
 const ExpressError = require("../helpers/expressError");
 const { BCRYPT_WORK_FACTOR } = require("../config");
 
-
 /** related function for users */
-
 class User {
-
   /** authenticate user with username, password. Return user or throw error */
   static async authenticate(username, password) {
     //find the user first
@@ -140,6 +137,5 @@ class User {
     }
   }
 }
-
 
 module.exports = User;
