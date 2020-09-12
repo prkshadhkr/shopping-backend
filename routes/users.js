@@ -16,7 +16,7 @@ router.get("/", adminRequired, async function(req, res, next){
   } catch(err){
     return next(err);
   }
-})
+});
 
 /** GET/[username] => {user: user} */
 router.get("/:username", ensureCorrectUser, async function(req, res, next){
@@ -26,7 +26,7 @@ router.get("/:username", ensureCorrectUser, async function(req, res, next){
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** POST/{ userdata } => { token: token } */
 router.post("/", async function(req, res, next){
@@ -43,7 +43,7 @@ router.post("/", async function(req, res, next){
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** PATCH /{userData} => {user: updateUser} */
 router.patch("/:username", ensureCorrectUser, async function(req, res, next){
@@ -52,7 +52,7 @@ router.patch("/:username", ensureCorrectUser, async function(req, res, next){
       throw new ExpressError(
         `You are not allowed to change username or is_admin properties`,
         400
-      )
+      );
     }
 
     const validateUser = validate(req.body, userUpdateSchema);
@@ -65,7 +65,7 @@ router.patch("/:username", ensureCorrectUser, async function(req, res, next){
   } catch (err){
     return next (err);
   }
-})
+});
 
 /** DELETE /[username] => { message: "user deleted" } */
 router.delete("/:username", ensureCorrectUser, async function(req, res, next){
@@ -75,6 +75,6 @@ router.delete("/:username", ensureCorrectUser, async function(req, res, next){
   } catch(err){
     return next(err);
   }
-})
+});
 
 module.exports = router;
