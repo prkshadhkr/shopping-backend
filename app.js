@@ -1,5 +1,4 @@
 /*** express app: shopping ***/
-
 const express = require("express");
 const cors = require("cors");
 const ExpressError = require("./helpers/expressError");
@@ -7,7 +6,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
-
+const paymentRoutes = require("./routes/payments");
 
 /** middleware */
 const morgan = require('morgan');
@@ -27,14 +26,11 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 /** routes */
+app.use("/payments", paymentRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/users", userRoutes);
 app.use("/", authRoutes);
-
-
-
-
 
 /*** 404 handler: ***/
 app.use(function (req, res, next){
