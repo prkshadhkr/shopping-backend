@@ -15,7 +15,7 @@ router.get("/", async function(req, res, next){
   } catch(err){
     return next(err);
   }
-})
+});
 
 /** GET/[name] => {product: product} */
 router.get("/:id", async function(req, res, next){
@@ -25,7 +25,7 @@ router.get("/:id", async function(req, res, next){
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** POST/{ productData } => { token: token } */
 router.post("/new", adminRequired, async function(req, res, next){
@@ -41,7 +41,7 @@ router.post("/new", adminRequired, async function(req, res, next){
   } catch (err){
     return next(err);
   }
-})
+});
 
 /** PATCH /{productData} => {product: updateProduct} */
 router.patch("/:id", adminRequired, async function(req, res, next){
@@ -73,7 +73,7 @@ router.delete("/:id", adminRequired, async function(req, res, next){
   } catch(err){
     return next(err);
   }
-})
+});
 
 /** POST /{reviews}  => {product : reviews }*/
 router.post("/:id/reviews", authRequired, async function(req, res, next){
@@ -87,7 +87,7 @@ router.post("/:id/reviews", authRequired, async function(req, res, next){
   } catch(err) {
     return next(err);
   }
-})
+});
 
 /** GET /{ reviews } => {reviews: reviews } */
 router.get("/:id/reviews", authRequired, async function(req, res, next) {
@@ -97,7 +97,7 @@ router.get("/:id/reviews", authRequired, async function(req, res, next) {
   } catch(err) {
     return next(err);
   }
-})
+});
 
 /** DELETE / [id] => {reviews: "review deleted"} */
 router.delete("/:id/reviews/:rId", adminRequired, async function(req, res, next){
@@ -107,6 +107,6 @@ router.delete("/:id/reviews/:rId", adminRequired, async function(req, res, next)
   } catch(err){
     return next(err);
   }
-})
+});
 
 module.exports = router;
