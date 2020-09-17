@@ -17,7 +17,7 @@ beforeEach ( async function() {
 /** POST /product return { product } */
 describe('POST / products /new', function () {
   test('add products if user has admin rights', async function () {
-    let response = await request(app)
+    const response = await request(app)
       .post(`/products/new`)
       .send({
         name : "chicken",
@@ -34,7 +34,7 @@ describe('POST / products /new', function () {
   });
 
   test('Unauthrized if user is not admin ', async function () {
-    let response = await request(app)
+    const response = await request(app)
       .post(`/products/new`)
       .send({
         name: "pork",
@@ -67,9 +67,8 @@ describe('GET / products', function (){
 /**GET/products/id returns{ product: {product info}}*/
 describe('GET / products / :id', function () {
   test('return info about specific product', async function() {
-    console.log('================= product id', TEST_OBJ.currentProductId);
     const response = await request(app)
-      .get(`/products/${TEST_OBJ.curentProductId}`);
+      .get(`/products/${TEST_OBJ.currentProductId}`);
     expect(response.statusCode).toBe(200);
     expect(response.body).toMatchObject({product: {
       id: TEST_OBJ['currentProductId'],

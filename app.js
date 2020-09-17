@@ -43,7 +43,8 @@ app.use(function (req, res, next){
 /*** general Error handler: ***/
 app.use(function (err, req, res, next){
   res.status(err.status || 500);
-  console.error(err.stack);
+  //would prevent from error messages flooding while testing
+  if(process.env.NODE_ENV !== "test") console.error(err.stack);
 
   return res.json({
     status: err.status,
