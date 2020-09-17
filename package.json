@@ -6,6 +6,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "test": "npx jest"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
@@ -17,6 +20,10 @@
     "locus": "^2.0.4",
     "morgan": "^1.10.0",
     "pg": "^8.3.0",
-    "stripe": "^8.92.0"
+    "stripe": "^8.92.0",
+    "watchman": "^1.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^4.0.2"
   }
 }
