@@ -4,13 +4,12 @@ const jwt = require ("jsonwebtoken");
 
 const app = require ("../../app");
 const db = require ("../../db");
-const { SECRET_KEY } = require("../../config");
 const BCRYPT_WORK_FACTOR = 1;
 const TEST_OBJ = {};
 
 async function beforeEachTest(TEST_OBJ) {
   try {
-    //lets make some users:
+    //lets add couple users:
     const hpAdmin = await bcrypt.hash('admin', BCRYPT_WORK_FACTOR);
     const hpCow = await bcrypt.hash('cow', BCRYPT_WORK_FACTOR);
 
@@ -102,7 +101,7 @@ async function beforeEachTest(TEST_OBJ) {
     ['potato']);
     const product = resProduct.rows[0];
     TEST_OBJ.currentProductId = product.id;
-    
+
   } catch (e) {
     console.error(e);
   }
