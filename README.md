@@ -1,4 +1,4 @@
-### Link
+### Links
 web: https://shop-only.herokuapp.com/ <br>
 frontend: https://github.com/prkshadhkr/shopping-frontend <br>
 Stripe API: https://stripe.com/docs/payments/integration-builder
@@ -12,6 +12,6 @@ Stripe API: https://stripe.com/docs/payments/integration-builder
      (Note: visit https://stripe.com/ to get YOUR_STRIPE_KEY)<br>
 
 ### Improvements:
-  1. Make separate Cart table to track of items whenever user adds or removes the products.
+  1. Make separate Cart table to track items update in cart whenever user adds or removes the products.
   2. Updtae database only after payment is completed.
   
