@@ -2,8 +2,8 @@
 web: https://shop-only.herokuapp.com/ <br>
 frontend: https://github.com/prkshadhkr/shopping-frontend <br>
 Stripe API: https://stripe.com/docs/payments/integration-builder
-
-### Developers:
+## How to use
+### Developers
   1. Clone the project
   2. Create **secret.js** in root directory.
   3. In secret.js add following:<br>
